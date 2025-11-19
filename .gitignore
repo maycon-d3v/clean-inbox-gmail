@@ -1,0 +1,42 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.cache
+.vs/
+
+# Node
+node_modules/
+dist/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+
+# Build
+build/
+
+# Google OAuth Credentials (SENSITIVE!)
+credentials.json
+token.pickle
+appsettings.json
+appsettings.*.json
+!appsettings.Production.json

@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install:*)",
+      "Bash(python delete_unread_emails.py:*)",
+      "Bash(del token.pickle)",
+      "Bash(dotnet --version:*)",
+      "Bash(dotnet new:*)",
+      "Bash(dotnet add:*)",
+      "Bash(dotnet add package:*)",
+      "Bash(npm --version:*)",
+      "Bash(npm create:*)",
+      "Bash(npm install:*)",
+      "Bash(dotnet run)",
+      "Bash(npm run dev:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

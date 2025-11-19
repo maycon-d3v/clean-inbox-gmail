@@ -1,0 +1,41 @@
+services:
+  # Backend API (.NET)
+  - type: web
+    name: gmail-cleanup-api
+    env: docker
+    region: oregon
+    plan: free
+    rootDir: backend/GmailCleanup.API
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: Google__ClientId
+        sync: false
+      - key: Google__ClientSecret
+        sync: false
+      - key: Google__RedirectUri
+        sync: false
+      - key: AllowedOrigins__0
+        sync: false
+
+  # Frontend (React + Vite)
+  - type: web
+    name: gmail-cleanup-frontend
+    env: static
+    region: oregon
+    plan: free
+    rootDir: frontend/gmail-cleanup-app
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+    envVars:
+      - key: VITE_API_URL
+        sync: false

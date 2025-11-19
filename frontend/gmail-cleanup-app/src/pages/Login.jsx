@@ -41,9 +41,14 @@ function Login() {
       setLoading(true);
       setError('');
       const authUrl = await authService.getLoginUrl(forceAccountSelection);
-      window.location.href = authUrl;
+
+      // Force redirect - better compatibility with mobile browsers
+      setTimeout(() => {
+        window.location.href = authUrl;
+      }, 100);
     } catch (err) {
-      setError('Failed to initiate login. Please try again.');
+      console.error('Login error:', err);
+      setError(`Failed to initiate login: ${err.message || 'Please try again.'}`);
       setLoading(false);
     }
   };

@@ -83,6 +83,9 @@ public class AuthController : ControllerBase
 
     private string GetFrontendUrl()
     {
-        return "http://localhost:5173";
+        // Get from configuration, fallback to localhost for development
+        var frontendUrl = Environment.GetEnvironmentVariable("FRONTEND_URL")
+            ?? "http://localhost:5173";
+        return frontendUrl;
     }
 }

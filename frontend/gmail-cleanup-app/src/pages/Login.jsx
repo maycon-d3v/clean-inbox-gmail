@@ -40,7 +40,13 @@ function Login() {
     try {
       setLoading(true);
       setError('');
+
+      // Show API URL being used for debugging
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      console.log('API URL:', apiUrl);
+
       const authUrl = await authService.getLoginUrl(forceAccountSelection);
+      console.log('Auth URL received:', authUrl);
 
       // Force redirect - better compatibility with mobile browsers
       setTimeout(() => {
@@ -48,7 +54,10 @@ function Login() {
       }, 100);
     } catch (err) {
       console.error('Login error:', err);
-      setError(`Failed to initiate login: ${err.message || 'Please try again.'}`);
+      const errorDetails = err.response
+        ? `${err.response.status}: ${err.response.statusText} - ${JSON.stringify(err.response.data)}`
+        : err.message || 'Unknown error';
+      setError(`Failed to initiate login: ${errorDetails}`);
       setLoading(false);
     }
   };
